@@ -1,0 +1,121 @@
+                                                                                                                   面向对象
+                                                                                        可以概括为封装性，多态性和继承性
+
+                          自定义对象
+ var 01 ={
+  name:'jin',
+ age:18,
+ gender:‘男’
+}；
+
+
+                           构造函数
+       自定义构造函数 
+ 用this表示刚创建的对象，所有单词的首字母大写
+function Person(name，age){
+ this.name = name；
+ this.age = age；
+ this.fangfa = function(){
+ console.log()；
+}；
+}
+var p = new Person('boy',18);  通过构造函数创建对象
+
+
+  在构造函数中var 关键字定义的变量是私有变量，实例对象后无法通过“对象成员”的方法访问，但是私有成员可以在对象的成员方法中访问
+  function Person(){
+   var name = ‘girl’；
+  this.getName  = function(){
+     return name；
+  }；
+}
+ var p = new Person()；
+ p.getName()； 才能输出结果 
+ console.log('p.name'); 访问私有成员，输出结果undefined
+ 上面的代码体现了name面向对象的封装性。对外接口getName()，防止内部成员被外部随意访问
+
+
+                                  函数中this的指向
+分析this指向
+1.使用new关键字将函数作为构造函数调用时，构造函数内部的this指向刚创建的对象
+2.直接通过函数名调用函数时，this指向的是全局对象（在浏览器中表示Window对象）
+3.如果将函数作为对象的方法调用，this将会指向该对象
+
+
+                                               原型
+             原型对象
+每定义一个对象，就随之有一个对象存在，函数通过prototype属性指向该对象，这个对象称之为为原型对象，简称原型。
+function Person(name){
+  this.name = name ;
+}
+
+Person.prototype.in = function(){};
+ var p1 = new Person('Jim');
+ var p2 = new Person('J');
+console.log(p1.in===p2.in);
+
+
+
+          继承  在js中继承是在已有对象的基础上进行扩展
+  1.利用原型对象实现继承
+function Person(name){
+  this.name = name ;
+}
+Person.prototype.hello = function(){
+ console.log('你好,我是'+this.name);
+};
+ var p1 = new Person('Jim');
+ var p2 = new Person('J');
+   p1,p2继承了元ing对象的成员 hello();
+
+
+
+
+  2.替换原型对象实现继承
+function Person(){}
+Person.prototype.hello = function(){
+ console.log('这是原来的对象');
+}
+ var p1 = new Person();
+Person.prototype={
+     hello:function(){
+         console.log('替换后的对象');
+      }
+}
+ var p2 = new Person();
+p1.hello(); //结果：这是原来的对象
+p1.hello();//结果：替换后的对象
+
+
+    3.利用Object.create()实现继承
+   
+   var obj = {
+         hello:function(){
+                console.log('我是一个带有hello方法的对象');
+         }
+};
+var newObj = new Object.create(obj );
+newObj .hello();   //结果:我是一个带有hello方法的对象
+newObj ._proto_ === obj;  //true
+
+
+     4.混入继承 
+  混入就是将一个对象的成员加入另一个对象中，实现对象功能的扩展。
+var o = {};
+var p = {name:'Jim'};
+o.name = p.name;
+console.log(o.name );//结果:Jim
+也可以通过写一个函数进行赋值 对对象成员比较多是不用那么麻烦
+mix()混入     extend()扩张
+
+function extend(){
+ for(var k in p) {
+ o[k] = p[k]; 
+}
+}
+
+var o = {name:'kkk'};
+var p = {age;16};	
+extend(o,p);
+console.log(o.name );//结果:Jim
+console.log(o.age );//结果:16

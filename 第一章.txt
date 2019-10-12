@@ -1,0 +1,56 @@
+alert(); 弹出一个警告框 优先级别高
+console.log(); 在控制台输出内容
+document.write(); 在HTML文档页面输出内容 次优先
+
+函数的返回值
+prompt();  弹出一个输入框，提示用户输入内容 ，也可以使用二个函数设置输入框的模式文本
+alert（'你的名字'+prompt('李可爱')）；  拼接
+
+自定义函数
+    function sum(a,b){
+	var c = a+b;
+	returnc;
+   }
+
+调用
+alert(sum(10,20));
+
+对象
+  window对象 
+ window.console; 
+ window.document;
+ window.alert();
+ window.prompt();
+
+ String对象
+ var str = 'apple';
+ alert(str.length)
+ alert(str.toUpperCase); 转换大写
+ alert('aa'.toUpperCase); 直接调用成员方法转换
+
+ 自定义对象
+ var stu ={};
+ stu.name = '';
+ stu.gender ='';
+ stu.age='';
+ alert(stu.name); 访问stu的name属性
+//添加方法
+ stu.introduce = function(){
+ return ''+this.name+''+this.age;
+};
+alert(stu.introduce)；
+ 
+事件
+ 交互行为 如滑动，单击鼠标，滚动屏幕，敲击键盘等
+ <input type="button" onclick="alert('Hello');" value="test">
+通过元素对象来添加事件
+<input type="button" id="btn" value="test">
+<script>
+ document.getElement('btn').onclick = function(){
+  alert(this.value):
+}
+</script>
+
+
+
+

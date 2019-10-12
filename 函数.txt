@@ -1,0 +1,27 @@
+函数用于封装一段完成特定功能的代码
+ 自定义函数
+ function 函数名（）{
+//函数体
+};
+ 函数的调用
+函数名称([参数1，参数2，......])
+
+匿名函数
+  没有函数名称的函数。它既是函数表达式，又可以通过函数声明的方式实现调用。
+ 函数表达式
+ 匿名函数
+ //方式1：函数表达式中省略函数名
+ var fn = function (num1,num2){
+ return num1+num2;
+};
+fn(1,2);
+//方式2：自调用方式
+ (function (num1,num2){
+ return num1+num2;
+}) (2,3);
+//方法3：处理事件
+ document.body.onclick = function(){
+  alert('Hi,everybody');
+};
+回调函数
+使用回调函数的方法
